@@ -2,13 +2,188 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Vite App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Les petits plats</title>
   </head>
-  <body>
-    <h1 class="text-red-400 text-7xl font-bold uppercase">hello world</h1>
+  <body class="relative">
+    <!-- header logo -->
+    <header class="absolute top-0">
+      <div class="pl-16 pt-16 flex gap-[4.6px] justify-start">
+        <img
+          src="./assets/images/logo/logo-letter.svg"
+          alt="les petits plats"
+        />
+        <img src="./assets/images/logo/logo-icon.svg" alt="icon" />
+      </div>
+    </header>
+    <!-- hero -->
+    <section class="hero h-[90vh]">
+      <div class="bg-hero flex flex-col justify-center items-center gap-9">
+        <h1
+          class="w-[80vw] font-anton text-primary text-3xl text-center leading-normal lg:w-[890px] lg:text-5xl lg:leading-relaxed"
+        >
+          CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET
+          DÉLICIEUSES
+        </h1>
+        <div
+          class="w-[80vw] rounded-xl flex justify-between items-center bg-white lg:w-[954px]"
+        >
+          <div class="flex w-full justify-between items-center px-4">
+            <input
+              class="flex-1 px-5 py-6 outline-none"
+              type="text"
+              placeholder="Rechercher une recette, un ingrédient, ..."
+            />
+            <button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="17"
+                height="17"
+                viewBox="0 0 17 17"
+                fill="none"
+              >
+                <path
+                  d="M15 15L8.5 8.5M8.5 8.5L2 2M8.5 8.5L15 2M8.5 8.5L2 15"
+                  stroke="#7A7A7A"
+                  stroke-width="2.16667"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <button class="search-icon bg-dark p-2 rounded-lg mr-2 ml-4">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="29"
+              viewBox="0 0 28 29"
+              fill="none"
+            >
+              <circle
+                cx="10"
+                cy="10.4219"
+                r="9.5"
+                stroke="white"
+                class="circle"
+              />
+              <line
+                x1="18.3536"
+                y1="19.0683"
+                x2="27.3536"
+                y2="28.0683"
+                stroke="white"
+                class="line"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+    <main class="bg-bggrey h-full">
+      <!-- container page-->
+      <div class="max-w-[90%] m-auto py-10">
+        <!-- container input filter + total recipes -->
+        <div
+          class="flex flex-col-reverse gap-2 mb-14 lg:flex-row lg:justify-between lg:items-start"
+        >
+          <!-- container input filter -->
+          <div
+            class="flex flex-wrap gap-2 justify-between items-start lg:w-[50%]"
+          >
+            <!-- input filter -->
+            <div
+              class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white p-5 rounded-xl"
+            >
+              <!-- inside -->
+              <div class="flex flex-col w-full">
+                <!-- title and angle -->
+                <div class="flex justify-between items-center mb-2">
+                  <label for="ingredients">Ingrédients</label>
+                  <div class="angles">
+                    <img
+                      class="angle-down"
+                      src="./assets/images/icons/angle-down.svg"
+                      alt=""
+                    />
+                    <img
+                      class="angle-up"
+                      src="./assets/images/icons/angle-up.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- search bar -->
+                <div
+                  class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
+                >
+                  <div class="flex justify-between items-center pr-2">
+                    <input
+                      class="w-full flex-1 outline-none"
+                      type="text"
+                      name="ingredients"
+                      id="ingredients"
+                    />
+                    <!-- cross btn -->
+                    <button class="hidden">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="8"
+                        viewBox="0 0 8 8"
+                        fill="none"
+                      >
+                        <path
+                          d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
+                          stroke="#7A7A7A"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div class="h-full">
+                    <img src="./assets/images/icons/loop-little.svg" alt="" />
+                  </div>
+                </div>
+                <ul class="list-group">
+                  <li>elem1</li>
+                  <li>elem2</li>
+                  <li>elem3</li>
+                </ul>
+              </div>
+            </div>
+            <!-- input sort -->
+            <div
+              class="sort-group cursor-pointer flex justify-between w-[200px] bg-white p-5 rounded-xl"
+            >
+              Appareils
+              <ul class="list-group"></ul>
+              <img src="./assets/images/icons/angle-down.svg" alt="" />
+            </div>
+            <!-- input sort -->
+            <div
+              class="sort-group cursor-pointer flex justify-between w-[200px] bg-white p-5 rounded-xl"
+            >
+              Ustensiles
+              <ul class="list-group"></ul>
+              <img src="./assets/images/icons/angle-down.svg" alt="" />
+            </div>
+          </div>
+          <!-- total recipes -->
+          <p class="font-anton text-dark text-xl">1500 recettes</p>
+        </div>
+      </div>
+    </main>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
