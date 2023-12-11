@@ -39,11 +39,11 @@
         >
           <div class="flex w-full justify-between items-center px-4">
             <input
-              class="flex-1 px-5 py-6 outline-none"
+              class="search-hero flex-1 px-5 py-6 outline-none"
               type="text"
               placeholder="Rechercher une recette, un ingrédient, ..."
             />
-            <button>
+            <button class="btn-cancel-hero opacity-0 transition-opacity duration-200">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -91,7 +91,7 @@
     </section>
     <main class="bg-bggrey h-full">
       <!-- container page-->
-      <div class="max-w-[90%] m-auto py-10">
+      <div class="max-w-[90%] m-auto pt-10">
         <!-- container input filter + total recipes -->
         <div
           class="flex flex-col-reverse gap-2 mb-14 lg:flex-row lg:justify-between lg:items-start"
@@ -100,15 +100,17 @@
           <div
             class="flex flex-wrap gap-2 justify-between items-start lg:w-[50%]"
           >
-            <!-- input filter -->
+            <!-- input filter : "Ingredients" -->
             <div
-              class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white p-5 rounded-xl"
+              class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white py-5 rounded-xl"
             >
               <!-- inside -->
               <div class="flex flex-col w-full">
                 <!-- title and angle -->
-                <div class="flex justify-between items-center mb-2">
-                  <label for="ingredients">Ingrédients</label>
+                <div class=" title-menu flex justify-between items-center px-5">
+                  <p class="font-medium cursor-pointer"></p>
+                    Ingrédients
+                  </p>
                   <div class="angles">
                     <img
                       class="angle-down"
@@ -116,71 +118,431 @@
                       alt=""
                     />
                     <img
-                      class="angle-up"
+                      class="angle-up hidden"
                       src="./assets/images/icons/angle-up.svg"
                       alt=""
                     />
                   </div>
                 </div>
-                <!-- search bar -->
-                <div
-                  class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
-                >
-                  <div class="flex justify-between items-center pr-2">
-                    <input
-                      class="w-full flex-1 outline-none"
-                      type="text"
-                      name="ingredients"
-                      id="ingredients"
-                    />
-                    <!-- cross btn -->
-                    <button class="hidden">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="8"
-                        height="8"
-                        viewBox="0 0 8 8"
-                        fill="none"
-                      >
-                        <path
-                          d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
-                          stroke="#7A7A7A"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                <!-- search bar inside input -->
+                <div class="dropdown-menu hidden  transition-all duration-400">
+                  <div class="px-5 pt-2">
+                    <div
+                      class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
+                    >
+                      <div class="flex justify-between items-center pr-2">
+                        <input
+                          class="w-full flex-1 outline-none"
+                          type="text"
+                          name="ingredients"
+                          id="ingredients"
                         />
-                      </svg>
-                    </button>
+                        <!-- cross btn -->
+                        <button class="hidden">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="8"
+                            viewBox="0 0 8 8"
+                            fill="none"
+                          >
+                            <path
+                              d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
+                              stroke="#7A7A7A"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="h-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 28 29"
+                          fill="none"
+                        >
+                          <circle
+                            cx="10"
+                            cy="10.4219"
+                            r="9.5"
+                            stroke="#7a7a7a"
+                          />
+                          <line
+                            x1="18.3536"
+                            y1="19.0683"
+                            x2="27.3536"
+                            y2="28.0683"
+                            stroke="#7a7a7a"
+                          />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
-                  <div class="h-full">
-                    <img src="./assets/images/icons/loop-little.svg" alt="" />
-                  </div>
+
+                  <!-- items selected -->
+                  <ul
+                    class="items-selected w-full pt-3 pb-5 flex flex-col gap-1 text-sm"
+                  >
+                    <li
+                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
+                    >
+                      Crème de coco <span class="opacity-0 transition-opacity duration-200">x</span>
+                    </li>
+                    <li
+                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
+                    >
+                      Crème de coco<span class="opacity-0 transition-opacity duration-150">x</span>
+                    </li>
+                  </ul>
+                  <ul class="list-group px-5 text-sm">
+                    <li>elem1</li>
+                    <li>elem2</li>
+                    <li>elem3</li>
+                  </ul>
                 </div>
-                <ul class="list-group">
-                  <li>elem1</li>
-                  <li>elem2</li>
-                  <li>elem3</li>
-                </ul>
               </div>
             </div>
-            <!-- input sort -->
+            <!-- input filter : "Appareils" -->
             <div
-              class="sort-group cursor-pointer flex justify-between w-[200px] bg-white p-5 rounded-xl"
+              class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white py-5 rounded-xl"
             >
-              Appareils
-              <ul class="list-group"></ul>
-              <img src="./assets/images/icons/angle-down.svg" alt="" />
+              <!-- inside -->
+              <div class="flex flex-col w-full">
+                <!-- title and angle -->
+                <div class=" title-menu flex justify-between items-center px-5">
+                  <p class="font-medium cursor-pointer"></p>
+                    Appareils
+                  </p>
+                  <div class="angles">
+                    <img
+                      class="angle-down"
+                      src="./assets/images/icons/angle-down.svg"
+                      alt=""
+                    />
+                    <img
+                      class="angle-up hidden"
+                      src="./assets/images/icons/angle-up.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- search bar inside input -->
+                <div class="dropdown-menu hidden  transition-all duration-400">
+                  <div class="px-5 pt-2">
+                    <div
+                      class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
+                    >
+                      <div class="flex justify-between items-center pr-2">
+                        <input
+                          class="w-full flex-1 outline-none"
+                          type="text"
+                          name="ingredients"
+                          id="ingredients"
+                        />
+                        <!-- cross btn -->
+                        <button class="hidden">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="8"
+                            viewBox="0 0 8 8"
+                            fill="none"
+                          >
+                            <path
+                              d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
+                              stroke="#7A7A7A"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="h-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 28 29"
+                          fill="none"
+                        >
+                          <circle
+                            cx="10"
+                            cy="10.4219"
+                            r="9.5"
+                            stroke="#7a7a7a"
+                          />
+                          <line
+                            x1="18.3536"
+                            y1="19.0683"
+                            x2="27.3536"
+                            y2="28.0683"
+                            stroke="#7a7a7a"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- items selected -->
+                  <ul
+                    class="items-selected w-full pt-3 pb-5 flex flex-col gap-1 text-sm"
+                  >
+                    <li
+                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
+                    >
+                      Crème de coco <span class="opacity-0 transition-opacity duration-200">x</span>
+                    </li>
+                    <li
+                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
+                    >
+                      Crème de coco<span class="opacity-0 transition-opacity duration-150">x</span>
+                    </li>
+                  </ul>
+                  <ul class="list-group px-5 text-sm">
+                    <li>elem1</li>
+                    <li>elem2</li>
+                    <li>elem3</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <!-- input sort -->
+            <!-- input filter : "Ustensiles" -->
             <div
-              class="sort-group cursor-pointer flex justify-between w-[200px] bg-white p-5 rounded-xl"
+              class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white py-5 rounded-xl"
             >
-              Ustensiles
-              <ul class="list-group"></ul>
-              <img src="./assets/images/icons/angle-down.svg" alt="" />
+              <!-- inside -->
+              <div class="flex flex-col w-full">
+                <!-- title and angle -->
+                <div class=" title-menu flex justify-between items-center px-5">
+                  <p class="font-medium cursor-pointer"></p>
+                    Ustensiles
+                  </p>
+                  <div class="angles">
+                    <img
+                      class="angle-down"
+                      src="./assets/images/icons/angle-down.svg"
+                      alt=""
+                    />
+                    <img
+                      class="angle-up hidden"
+                      src="./assets/images/icons/angle-up.svg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- search bar inside input -->
+                <div class="dropdown-menu hidden  transition-all duration-400">
+                  <div class="px-5 pt-2">
+                    <div
+                      class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
+                    >
+                      <div class="flex justify-between items-center pr-2">
+                        <input
+                          class="w-full flex-1 outline-none"
+                          type="text"
+                          name="ingredients"
+                          id="ingredients"
+                        />
+                        <!-- cross btn -->
+                        <button class="hidden">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="8"
+                            viewBox="0 0 8 8"
+                            fill="none"
+                          >
+                            <path
+                              d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
+                              stroke="#7A7A7A"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="h-full">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 28 29"
+                          fill="none"
+                        >
+                          <circle
+                            cx="10"
+                            cy="10.4219"
+                            r="9.5"
+                            stroke="#7a7a7a"
+                          />
+                          <line
+                            x1="18.3536"
+                            y1="19.0683"
+                            x2="27.3536"
+                            y2="28.0683"
+                            stroke="#7a7a7a"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- items selected -->
+                  <ul
+                    class="items-selected w-full pt-3 pb-5 flex flex-col gap-1 text-sm"
+                  >
+                    <li
+                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
+                    >
+                      Crème de coco <span class="opacity-0 transition-opacity duration-200">x</span>
+                    </li>
+                    <li
+                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
+                    >
+                      Crème de coco<span class="opacity-0 transition-opacity duration-150">x</span>
+                    </li>
+                  </ul>
+                  <ul class="list-group px-5 text-sm">
+                    <li>elem1</li>
+                    <li>elem2</li>
+                    <li>elem3</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <!-- total recipes -->
           <p class="font-anton text-dark text-xl">1500 recettes</p>
+        </div>
+      </div>
+      <!-- container cards recipes -->
+      <div class="max-w-[90%] m-auto pb-20 gap-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <!-- CARDS -->
+        <div class="shadow-card flex flex-col relative h-[730px] w-[380px] bg-white rounded-3xl ">
+          <div class="bgimg-recipe h-[250px] w-full ">
+            <img class="object-cover rounded-tr-3xl rounded-tl-3xl h-full w-full" src="./assets/images/recettes/Recette01.jpg" alt="">
+          </div>
+          <span class="time-torealise px-4 py-2 bg-primary rounded-full absolute top-4 right-4">10min</span>
+          <!-- text into the card -->
+          <div class="py-7 px-6 flex flex-col justify-center gap-10">
+            <h2 class="font-anton text-lg text-black">Limonade de Coco</h2>
+            <!-- recipe -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">recette</h3>
+              <p class="text-dark text-sm">Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+            </div>
+            <!-- ingredients -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">Ingrédients</h3>
+              <ul class="text-dark text-sm grid grid-cols-2 gap-5">
+                <li class="font-medium flex flex-col">Lait de coco<span class="text-darkgrey font-normal">400ml</span>
+                </li>
+                <li class="font-medium flex flex-col">Jus de citron<span class="text-darkgrey font-normal">2</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="shadow-card flex flex-col relative h-[730px] w-[380px] bg-white rounded-3xl ">
+          <div class="bgimg-recipe h-[250px] w-full ">
+            <img class="object-cover rounded-tr-3xl rounded-tl-3xl h-full w-full" src="./assets/images/recettes/Recette01.jpg" alt="">
+          </div>
+          <span class="time-torealise px-4 py-2 bg-primary rounded-full absolute top-4 right-4">10min</span>
+          <!-- text into the card -->
+          <div class="py-7 px-6 flex flex-col justify-center gap-10">
+            <h2 class="font-anton text-lg text-black">Limonade de Coco</h2>
+            <!-- recipe -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">recette</h3>
+              <p class="text-dark text-sm">Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+            </div>
+            <!-- ingredients -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">Ingrédients</h3>
+              <ul class="text-dark text-sm grid grid-cols-2 gap-5">
+                <li class="font-medium flex flex-col">Lait de coco<span class="text-darkgrey font-normal">400ml</span>
+                </li>
+                <li class="font-medium flex flex-col">Jus de citron<span class="text-darkgrey font-normal">2</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="shadow-card flex flex-col relative h-[730px] w-[380px] bg-white rounded-3xl ">
+          <div class="bgimg-recipe h-[250px] w-full  ">
+            <img class="object-cover rounded-tr-3xl rounded-tl-3xl h-full w-full" src="./assets/images/recettes/Recette01.jpg" alt="">
+          </div>
+          <span class="time-torealise px-4 py-2 bg-primary rounded-full absolute top-4 right-4">10min</span>
+          <!-- text into the card -->
+          <div class="py-7 px-6 flex flex-col justify-center gap-10">
+            <h2 class="font-anton text-lg text-black">Limonade de Coco</h2>
+            <!-- recipe -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">recette</h3>
+              <p class="text-dark text-sm">Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+            </div>
+            <!-- ingredients -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">Ingrédients</h3>
+              <ul class="text-dark text-sm grid grid-cols-2 gap-5">
+                <li class="font-medium flex flex-col">Lait de coco<span class="text-darkgrey font-normal">400ml</span>
+                </li>
+                <li class="font-medium flex flex-col">Jus de citron<span class="text-darkgrey font-normal">2</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="shadow-card flex flex-col relative h-[730px] w-[380px] bg-white rounded-3xl ">
+          <div class="bgimg-recipe h-[250px] w-full  ">
+            <img class="object-cover rounded-tr-3xl rounded-tl-3xl h-full w-full" src="./assets/images/recettes/Recette01.jpg" alt="">
+          </div>
+          <span class="time-torealise px-4 py-2 bg-primary rounded-full absolute top-4 right-4">10min</span>
+          <!-- text into the card -->
+          <div class="py-7 px-6 flex flex-col justify-center gap-10">
+            <h2 class="font-anton text-lg text-black">Limonade de Coco</h2>
+            <!-- recipe -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">recette</h3>
+              <p class="text-dark text-sm">Mettre les glaçons à votre goût dans le blender, Ajouter le lait  la crème de coco, le jus de 2 citrons et le sucre ensemble. Mixer jusqu'à obtenir la consistance désirée.</p>
+            </div>
+            <!-- ingredients -->
+            <div class="flex flex-col gap-4">
+              <h3 class="uppercase text-darkgrey text-xs">Ingrédients</h3>
+              <ul class="text-dark text-sm grid grid-cols-2 gap-5">
+                <li class="font-medium flex flex-col">Lait de coco<span class="text-darkgrey font-normal">400ml</span>
+                </li>
+                <li class="font-medium flex flex-col">Jus de citron<span class="text-darkgrey font-normal">2</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+                <li class="font-medium flex flex-col">Crème de coco<span class="text-darkgrey font-normal">4 cuillères</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </main>
