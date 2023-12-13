@@ -1,17 +1,41 @@
-// import './style.css';
+import './assets/css/style.css';
+import { getRecipes } from './assets/scripts/templateRecipe';
+import {
+  changeOpacity,
+  changesAngles,
+  isVisible,
+  diplayCrossIcon,
+} from './assets/scripts/animations';
+import { fetchData } from './assets/scripts/fetchData';
+
 const filtersGroupElem = document.querySelectorAll('.filter-group');
 const btnCancelHero = document.querySelector('.btn-cancel-hero');
 const inputSearchHero = document.querySelector('.search-hero');
+const containerCards = document.querySelector('.container-cards');
 
-const changeOpacity = (element, opacity) => {
-  if (opacity === 1) {
-    element.classList.add('opacity-100');
-    element.classList.remove('opacity-0');
-  } else if (opacity === 0) {
-    element.classList.add('opacity-0');
-    element.classList.remove('opacity-100');
-  }
+const displayCard = async () => {
+  const data = await fetchData();
+  const template = await getRecipes();
+  console.log(data);
+  data.forEach((d) => {
+    const card = template.getCard();
+    const imgRecipe = template.getImgRecipe(d.image);
+    const timeLabel = template.getTimeLabel(d.time);
+    const textContainer = template.getTextContainer(d.name);
+    const textRecipe = template.getTextRecipe(d.description);
+    const textIngredients = template.getTextIngredients(d.ingredients);
+    containerCards.append(card);
+    card.append(imgRecipe);
+    card.append(timeLabel);
+    card.append(textContainer);
+    textContainer.append(textRecipe);
+    textContainer.append(textIngredients);
+  });
 };
+document.addEventListener('DOMContentLoaded', () => {
+  displayCard();
+});
+
 inputSearchHero.addEventListener('input', (event) => {
   const value = event.target.value;
   if (value.length > 0) {
@@ -20,38 +44,6 @@ inputSearchHero.addEventListener('input', (event) => {
     changeOpacity(btnCancelHero, 0);
   }
 });
-// display cross in list item inside dropdown
-const diplayCrossIcon = (items) => {
-  items.forEach((item) => {
-    const removeIcon = item.querySelector('span');
-    item.addEventListener('mouseover', () => {
-      changeOpacity(removeIcon, 1);
-    });
-    item.addEventListener('mouseout', () => {
-      changeOpacity(removeIcon, 0);
-    });
-  });
-};
-// =================================================
-const changesAngles = (angleDown, angleUp) => {
-  if (!angleDown.classList.contains('hidden')) {
-    isVisible(angleDown, false);
-    isVisible(angleUp, true);
-    // angleDown.classList.add('hidden');
-    // angleUp.classList.remove('hidden');
-  } else {
-    isVisible(angleDown, true);
-    isVisible(angleUp, false);
-  }
-};
-// ==================================================
-const isVisible = (element, boolean) => {
-  if (boolean) {
-    element.classList.remove('hidden');
-  } else {
-    element.classList.add('hidden');
-  }
-};
 
 // open select menu
 filtersGroupElem.forEach((filterElem) => {
