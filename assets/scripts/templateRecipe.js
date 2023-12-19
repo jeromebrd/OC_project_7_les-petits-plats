@@ -1,7 +1,9 @@
 import { fetchData } from './fetchData';
 import '../css/style.css';
 
-export const getRecipes = () => {
+const containerCards = document.querySelector('.container-cards');
+
+const getRecipes = () => {
   // create recipe article
   const getCard = () => {
     const card = document.createElement('article');
@@ -12,6 +14,7 @@ export const getRecipes = () => {
     );
     return card;
   };
+  // ========================================================
   // create recipe image
   const getImgRecipe = (image) => {
     const divImg = document.createElement('div');
@@ -25,6 +28,7 @@ export const getRecipes = () => {
     divImg.appendChild(img);
     return divImg;
   };
+  // ========================================================
   // create time label to realise the recipe
   const getTimeLabel = (time) => {
     const span = document.createElement('span');
@@ -36,6 +40,7 @@ export const getRecipes = () => {
     span.textContent = `${time}min`;
     return span;
   };
+  // ========================================================
   // create text container + title recipe
   const getTextContainer = (name) => {
     const container = document.createElement('div');
@@ -46,6 +51,7 @@ export const getRecipes = () => {
     container.appendChild(h2);
     return container;
   };
+  // ========================================================
   // create the recipe description
   const getTextRecipe = (desc) => {
     const container = document.createElement('div');
@@ -60,6 +66,7 @@ export const getRecipes = () => {
     container.appendChild(p);
     return container;
   };
+  // ========================================================
   // create the ingredients list
   const getTextIngredients = (ingredients) => {
     const container = document.createElement('div');
@@ -71,17 +78,17 @@ export const getRecipes = () => {
     h3.setAttribute('class', 'uppercase text-darkgrey text-xs');
     ul.setAttribute(
       'class',
-      'list-ingredients text-dark text-sm grid grid-cols-2 gap-5'
+      'list-ingredients text-dark text-sm grid grid-cols-2 gap-3 items-center md:gap-5'
     );
     h3.textContent = 'Ingrédients';
     container.appendChild(h3);
-
+    // ========================================================
     // create list item
     ingredients.forEach((i) => {
       const li = document.createElement('li');
       li.setAttribute('class', 'font-medium flex flex-col');
       li.innerHTML = `${i.ingredient} <span class="text-darkgrey font-normal">
-      ${i.quantity}${i.unit ? i.unit : ''}
+      ${i.quantity ? i.quantity : ''} ${i.unit ? i.unit : ''}
     </span>`;
       ul.appendChild(li);
     });
@@ -96,4 +103,25 @@ export const getRecipes = () => {
     getTextRecipe,
     getTextIngredients,
   };
+};
+//  ==========================================================
+
+export const displayCard = async () => {
+  const data = await fetchData();
+  const template = await getRecipes();
+  console.log(data);
+  data.forEach((d) => {
+    const card = template.getCard();
+    const imgRecipe = template.getImgRecipe(d.image);
+    const timeLabel = template.getTimeLabel(d.time);
+    const textContainer = template.getTextContainer(d.name);
+    const textRecipe = template.getTextRecipe(d.description);
+    const textIngredients = template.getTextIngredients(d.ingredients);
+    containerCards.append(card);
+    card.append(imgRecipe);
+    card.append(timeLabel);
+    card.append(textContainer);
+    textContainer.append(textRecipe);
+    textContainer.append(textIngredients);
+  });
 };

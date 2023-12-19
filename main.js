@@ -1,39 +1,21 @@
 import './assets/css/style.css';
-import { getRecipes } from './assets/scripts/templateRecipe';
+import { displayCard } from './assets/scripts/templateRecipe';
+import { displayInput } from './assets/scripts/dropdowns';
 import {
   changeOpacity,
   changesAngles,
   isVisible,
-  diplayCrossIcon,
+  displayCrossIcon,
 } from './assets/scripts/animations';
 import { fetchData } from './assets/scripts/fetchData';
 
 const filtersGroupElem = document.querySelectorAll('.filter-group');
 const btnCancelHero = document.querySelector('.btn-cancel-hero');
 const inputSearchHero = document.querySelector('.search-hero');
-const containerCards = document.querySelector('.container-cards');
 
-const displayCard = async () => {
-  const data = await fetchData();
-  const template = await getRecipes();
-  console.log(data);
-  data.forEach((d) => {
-    const card = template.getCard();
-    const imgRecipe = template.getImgRecipe(d.image);
-    const timeLabel = template.getTimeLabel(d.time);
-    const textContainer = template.getTextContainer(d.name);
-    const textRecipe = template.getTextRecipe(d.description);
-    const textIngredients = template.getTextIngredients(d.ingredients);
-    containerCards.append(card);
-    card.append(imgRecipe);
-    card.append(timeLabel);
-    card.append(textContainer);
-    textContainer.append(textRecipe);
-    textContainer.append(textIngredients);
-  });
-};
 document.addEventListener('DOMContentLoaded', () => {
   displayCard();
+  displayInput();
 });
 
 inputSearchHero.addEventListener('input', (event) => {
@@ -45,7 +27,7 @@ inputSearchHero.addEventListener('input', (event) => {
   }
 });
 
-// open select menu
+/* // open select menu
 filtersGroupElem.forEach((filterElem) => {
   const angleDown = filterElem.querySelector('.angle-down');
   const angleUp = filterElem.querySelector('.angle-up');
@@ -65,4 +47,4 @@ filtersGroupElem.forEach((filterElem) => {
     }
   });
   diplayCrossIcon(itemsSelected);
-});
+}); */

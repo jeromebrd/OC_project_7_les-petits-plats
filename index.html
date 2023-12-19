@@ -43,7 +43,9 @@
               type="text"
               placeholder="Rechercher une recette, un ingrédient, ..."
             />
-            <button class="btn-cancel-hero opacity-0 transition-opacity duration-200">
+            <button
+              class="btn-cancel-hero opacity-0 transition-opacity duration-200"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -103,323 +105,27 @@
             <!-- input filter : "Ingredients" -->
             <div
               class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white py-5 rounded-xl"
-            >
-              <!-- inside -->
-              <div class="flex flex-col w-full">
-                <!-- title and angle -->
-                <div class=" title-menu flex justify-between items-center px-5">
-                  <p class="font-medium cursor-pointer"></p>
-                    Ingrédients
-                  </p>
-                  <div class="angles">
-                    <img
-                      class="angle-down"
-                      src="./assets/images/icons/angle-down.svg"
-                      alt=""
-                    />
-                    <img
-                      class="angle-up hidden"
-                      src="./assets/images/icons/angle-up.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <!-- search bar inside input -->
-                <div class="dropdown-menu hidden  transition-all duration-400">
-                  <div class="px-5 pt-2">
-                    <div
-                      class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
-                    >
-                      <div class="flex justify-between items-center pr-2">
-                        <input
-                          class="w-full flex-1 outline-none"
-                          type="text"
-                          name="ingredients"
-                          id="ingredients"
-                        />
-                        <!-- cross btn -->
-                        <button class="hidden">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="8"
-                            viewBox="0 0 8 8"
-                            fill="none"
-                          >
-                            <path
-                              d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
-                              stroke="#7A7A7A"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                      <div class="h-full">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15"
-                          height="15"
-                          viewBox="0 0 28 29"
-                          fill="none"
-                        >
-                          <circle
-                            cx="10"
-                            cy="10.4219"
-                            r="9.5"
-                            stroke="#7a7a7a"
-                          />
-                          <line
-                            x1="18.3536"
-                            y1="19.0683"
-                            x2="27.3536"
-                            y2="28.0683"
-                            stroke="#7a7a7a"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- items selected -->
-                  <ul
-                    class="items-selected w-full pt-3 pb-5 flex flex-col gap-1 text-sm"
-                  >
-                    <li
-                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
-                    >
-                      Crème de coco <span class="opacity-0 transition-opacity duration-200">x</span>
-                    </li>
-                    <li
-                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
-                    >
-                      Crème de coco<span class="opacity-0 transition-opacity duration-150">x</span>
-                    </li>
-                  </ul>
-                  <ul class="list-group px-5 text-sm">
-                    <li>elem1</li>
-                    <li>elem2</li>
-                    <li>elem3</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+              id="ingredients"
+            ></div>
             <!-- input filter : "Appareils" -->
             <div
               class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white py-5 rounded-xl"
-            >
-              <!-- inside -->
-              <div class="flex flex-col w-full">
-                <!-- title and angle -->
-                <div class=" title-menu flex justify-between items-center px-5">
-                  <p class="font-medium cursor-pointer"></p>
-                    Appareils
-                  </p>
-                  <div class="angles">
-                    <img
-                      class="angle-down"
-                      src="./assets/images/icons/angle-down.svg"
-                      alt=""
-                    />
-                    <img
-                      class="angle-up hidden"
-                      src="./assets/images/icons/angle-up.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <!-- search bar inside input -->
-                <div class="dropdown-menu hidden  transition-all duration-400">
-                  <div class="px-5 pt-2">
-                    <div
-                      class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
-                    >
-                      <div class="flex justify-between items-center pr-2">
-                        <input
-                          class="w-full flex-1 outline-none"
-                          type="text"
-                          name="ingredients"
-                          id="ingredients"
-                        />
-                        <!-- cross btn -->
-                        <button class="hidden">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="8"
-                            viewBox="0 0 8 8"
-                            fill="none"
-                          >
-                            <path
-                              d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
-                              stroke="#7A7A7A"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                      <div class="h-full">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15"
-                          height="15"
-                          viewBox="0 0 28 29"
-                          fill="none"
-                        >
-                          <circle
-                            cx="10"
-                            cy="10.4219"
-                            r="9.5"
-                            stroke="#7a7a7a"
-                          />
-                          <line
-                            x1="18.3536"
-                            y1="19.0683"
-                            x2="27.3536"
-                            y2="28.0683"
-                            stroke="#7a7a7a"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- items selected -->
-                  <ul
-                    class="items-selected w-full pt-3 pb-5 flex flex-col gap-1 text-sm"
-                  >
-                    <li
-                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
-                    >
-                      Crème de coco <span class="opacity-0 transition-opacity duration-200">x</span>
-                    </li>
-                    <li
-                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
-                    >
-                      Crème de coco<span class="opacity-0 transition-opacity duration-150">x</span>
-                    </li>
-                  </ul>
-                  <ul class="list-group px-5 text-sm">
-                    <li>elem1</li>
-                    <li>elem2</li>
-                    <li>elem3</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+              id="appliance"
+            ></div>
             <!-- input filter : "Ustensiles" -->
             <div
               class="filter-group cursor-pointer flex justify-between items-start w-[200px] bg-white py-5 rounded-xl"
-            >
-              <!-- inside -->
-              <div class="flex flex-col w-full">
-                <!-- title and angle -->
-                <div class=" title-menu flex justify-between items-center px-5">
-                  <p class="font-medium cursor-pointer"></p>
-                    Ustensiles
-                  </p>
-                  <div class="angles">
-                    <img
-                      class="angle-down"
-                      src="./assets/images/icons/angle-down.svg"
-                      alt=""
-                    />
-                    <img
-                      class="angle-up hidden"
-                      src="./assets/images/icons/angle-up.svg"
-                      alt=""
-                    />
-                  </div>
-                </div>
-                <!-- search bar inside input -->
-                <div class="dropdown-menu hidden  transition-all duration-400">
-                  <div class="px-5 pt-2">
-                    <div
-                      class="w-full text-lightgrey flex justify-between items-center border py-1 px-2 border-lightgrey mb-2 rounded-sm"
-                    >
-                      <div class="flex justify-between items-center pr-2">
-                        <input
-                          class="w-full flex-1 outline-none"
-                          type="text"
-                          name="ingredients"
-                          id="ingredients"
-                        />
-                        <!-- cross btn -->
-                        <button class="hidden">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="8"
-                            height="8"
-                            viewBox="0 0 8 8"
-                            fill="none"
-                          >
-                            <path
-                              d="M7 7L4 4M4 4L1 1M4 4L7 1M4 4L1 7"
-                              stroke="#7A7A7A"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                      <div class="h-full">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="15"
-                          height="15"
-                          viewBox="0 0 28 29"
-                          fill="none"
-                        >
-                          <circle
-                            cx="10"
-                            cy="10.4219"
-                            r="9.5"
-                            stroke="#7a7a7a"
-                          />
-                          <line
-                            x1="18.3536"
-                            y1="19.0683"
-                            x2="27.3536"
-                            y2="28.0683"
-                            stroke="#7a7a7a"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- items selected -->
-                  <ul
-                    class="items-selected w-full pt-3 pb-5 flex flex-col gap-1 text-sm"
-                  >
-                    <li
-                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
-                    >
-                      Crème de coco <span class="opacity-0 transition-opacity duration-200">x</span>
-                    </li>
-                    <li
-                      class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
-                    >
-                      Crème de coco<span class="opacity-0 transition-opacity duration-150">x</span>
-                    </li>
-                  </ul>
-                  <ul class="list-group px-5 text-sm">
-                    <li>elem1</li>
-                    <li>elem2</li>
-                    <li>elem3</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+              id="ustensils"
+            ></div>
           </div>
           <!-- total recipes -->
           <p class="font-anton text-dark text-xl">1500 recettes</p>
         </div>
       </div>
       <!-- container cards recipes -->
-      <div class="container-cards max-w-[90%] m-auto pb-20 gap-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">        
-      </div>
+      <div
+        class="container-cards max-w-[90%] m-auto pb-20 gap-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      ></div>
     </main>
     <script type="module" src="/main.js"></script>
   </body>

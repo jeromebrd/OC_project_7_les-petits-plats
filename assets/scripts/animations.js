@@ -27,7 +27,7 @@ export const isVisible = (element, boolean) => {
 };
 // ==================================================
 // display cross in list item inside dropdown
-export const diplayCrossIcon = (items) => {
+export const displayCrossIcon = (items) => {
   items.forEach((item) => {
     const removeIcon = item.querySelector('span');
     item.addEventListener('mouseover', () => {
@@ -38,3 +38,4 @@ export const diplayCrossIcon = (items) => {
     });
   });
 };
+// ==================================================
