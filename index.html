@@ -37,13 +37,14 @@
         <div
           class="w-[80vw] rounded-xl flex justify-between items-center bg-white lg:w-[954px]"
         >
-          <div class="flex w-full justify-between items-center px-4">
+          <form class="flex w-full justify-between items-center px-4">
             <input
               class="search-hero flex-1 px-5 py-6 outline-none"
               type="text"
               placeholder="Rechercher une recette, un ingrédient, ..."
             />
             <button
+              type="reset"
               class="btn-cancel-hero opacity-0 transition-opacity duration-200"
             >
               <svg
@@ -62,32 +63,35 @@
                 />
               </svg>
             </button>
-          </div>
-          <button class="search-icon bg-dark p-2 rounded-lg mr-2 ml-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="29"
-              viewBox="0 0 28 29"
-              fill="none"
+            <button
+              type="submit"
+              class="search-icon bg-dark p-2 rounded-lg ml-4"
             >
-              <circle
-                cx="10"
-                cy="10.4219"
-                r="9.5"
-                stroke="white"
-                class="circle"
-              />
-              <line
-                x1="18.3536"
-                y1="19.0683"
-                x2="27.3536"
-                y2="28.0683"
-                stroke="white"
-                class="line"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="29"
+                viewBox="0 0 28 29"
+                fill="none"
+              >
+                <circle
+                  cx="10"
+                  cy="10.4219"
+                  r="9.5"
+                  stroke="white"
+                  class="circle"
+                />
+                <line
+                  x1="18.3536"
+                  y1="19.0683"
+                  x2="27.3536"
+                  y2="28.0683"
+                  stroke="white"
+                  class="line"
+                />
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
     </section>

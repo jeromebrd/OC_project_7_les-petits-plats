@@ -1,30 +1,26 @@
 import './assets/css/style.css';
-import { displayCard } from './assets/scripts/templateRecipe';
-import { displayInput } from './assets/scripts/dropdowns';
 import {
-  changeOpacity,
-  changesAngles,
-  isVisible,
-  displayCrossIcon,
-} from './assets/scripts/animations';
+  displayCard,
+  displayCardFind,
+  updateRecipes,
+} from './assets/scripts/templateRecipe';
+import { displayInput } from './assets/scripts/dropdowns';
+import { changeOpacity } from './assets/scripts/animations';
 import { fetchData } from './assets/scripts/fetchData';
 
-const filtersGroupElem = document.querySelectorAll('.filter-group');
 const btnCancelHero = document.querySelector('.btn-cancel-hero');
 const inputSearchHero = document.querySelector('.search-hero');
+const formElem = document.querySelector('form');
 
 document.addEventListener('DOMContentLoaded', () => {
   displayCard();
   displayInput();
+  getSearchRecipe();
 });
 
-inputSearchHero.addEventListener('input', (event) => {
-  const value = event.target.value;
-  if (value.length > 0) {
-    changeOpacity(btnCancelHero, 1);
-  } else {
-    changeOpacity(btnCancelHero, 0);
-  }
+btnCancelHero.addEventListener('click', () => {
+  changeOpacity(btnCancelHero, 0);
+  displayCard();
 });
 
 /* // open select menu

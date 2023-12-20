@@ -6,6 +6,7 @@ import {
 } from './animations';
 import { fetchData } from './fetchData';
 fetchData;
+
 export const dropdownMenu = () => {
   const listGroup = document.querySelectorAll('.list-group');
   const getContainerInput = () => {
