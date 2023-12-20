@@ -1,26 +1,14 @@
 import './assets/css/style.css';
-import {
-  displayCard,
-  displayCardFind,
-  updateRecipes,
-} from './assets/scripts/templateRecipe';
+import { displayCard } from './assets/scripts/templateRecipe';
+import { getSearchRecipe } from './assets/scripts/algoSearch';
 import { displayInput } from './assets/scripts/dropdowns';
 import { changeOpacity } from './assets/scripts/animations';
 import { fetchData } from './assets/scripts/fetchData';
-
-const btnCancelHero = document.querySelector('.btn-cancel-hero');
-const inputSearchHero = document.querySelector('.search-hero');
-const formElem = document.querySelector('form');
 
 document.addEventListener('DOMContentLoaded', () => {
   displayCard();
   displayInput();
   getSearchRecipe();
-});
-
-btnCancelHero.addEventListener('click', () => {
-  changeOpacity(btnCancelHero, 0);
-  displayCard();
 });
 
 /* // open select menu
