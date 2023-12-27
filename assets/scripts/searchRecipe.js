@@ -61,14 +61,17 @@ export const search = async () => {
       results.push({ index, position, property: 'description' });
     });
 
-    // Search in "ustensils"
-    recipe.ustensils.forEach((utensil, utensilIndex) => {
-      const utensilResults = searchKMP(utensil.toLowerCase(), pattern);
-      utensilResults.forEach((position) => {
+    // Search in "ingredients"
+    recipe.ingredients.forEach((ingredient, ingredientIndex) => {
+      const ingredientResults = searchKMP(
+        ingredient.ingredient.toLowerCase(),
+        pattern
+      );
+      ingredientResults.forEach((position) => {
         results.push({
           index,
           position,
-          property: `ustensils[${utensilIndex}]`,
+          property: `ingredients[${ingredientIndex}]`,
         });
       });
     });
