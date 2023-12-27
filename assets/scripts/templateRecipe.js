@@ -125,3 +125,23 @@ export const displayCard = async () => {
     textContainer.append(textIngredients);
   });
 };
+export const displayCardResult = async (result) => {
+  const data = await fetchData();
+  const template = await getRecipes();
+  data.forEach((d, i) => {
+    if (result.index === i) {
+      const card = template.getCard();
+      const imgRecipe = template.getImgRecipe(d.image);
+      const timeLabel = template.getTimeLabel(d.time);
+      const textContainer = template.getTextContainer(d.name);
+      const textRecipe = template.getTextRecipe(d.description);
+      const textIngredients = template.getTextIngredients(d.ingredients);
+      containerCards.append(card);
+      card.append(imgRecipe);
+      card.append(timeLabel);
+      card.append(textContainer);
+      textContainer.append(textRecipe);
+      textContainer.append(textIngredients);
+    }
+  });
+};
