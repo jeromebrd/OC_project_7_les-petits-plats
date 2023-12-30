@@ -48,34 +48,42 @@ export const search = async () => {
   const data = await fetchData();
   const results = [];
 
-  data.forEach((recipe, index) => {
+  for (let index = 0; index < data.length; index++) {
+    const recipe = data[index];
+
     // Search in "name"
     const nameResults = searchKMP(recipe.name.toLowerCase(), pattern);
-    nameResults.forEach((position) => {
+    for (const position of nameResults) {
       results.push({ index, position, property: 'name' });
-    });
+    }
 
     // Search in "description"
     const descResults = searchKMP(recipe.description.toLowerCase(), pattern);
-    descResults.forEach((position) => {
+    for (const position of descResults) {
       results.push({ index, position, property: 'description' });
-    });
+    }
 
     // Search in "ingredients"
-    recipe.ingredients.forEach((ingredient, ingredientIndex) => {
+    for (
+      let ingredientIndex = 0;
+      ingredientIndex < recipe.ingredients.length;
+      ingredientIndex++
+    ) {
+      const ingredient = recipe.ingredients[ingredientIndex];
       const ingredientResults = searchKMP(
         ingredient.ingredient.toLowerCase(),
         pattern
       );
-      ingredientResults.forEach((position) => {
+      for (const position of ingredientResults) {
         results.push({
           index,
           position,
           property: `ingredients[${ingredientIndex}]`,
         });
-      });
-    });
-  });
+      }
+    }
+  }
+
   // display cards
   console.log(results);
   displayResults(results);
