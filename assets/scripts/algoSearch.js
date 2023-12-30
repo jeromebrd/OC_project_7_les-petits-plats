@@ -19,6 +19,7 @@ const findRecipes = (search, recipes) => {
   const searchWords = userSearch.toLowerCase().split(' ');
   console.log(searchWords);
 
+  // save recipe name, desc, and each ingredients to lower case
   recipes.forEach((recipe) => {
     const recipeNameLowercase = recipe.name.toLowerCase();
     const recipeDescLowercase = recipe.description.toLowerCase();
