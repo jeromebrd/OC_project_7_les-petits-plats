@@ -286,25 +286,3 @@ const createItem = async (elements, ul, item) => {
     ul.appendChild(newItem);
   });
 };
-
-/* const filterGroupElems = document.querySelectorAll('.filter-group');
-filterGroupElems.forEach((filterElem) => {
-  const angleDown = filterElem.querySelector('.angle-down');
-  const angleUp = filterElem.querySelector('.angle-up');
-  const dropdownMenu = filterElem.querySelector('.dropdown-menu');
-  const titleMenu = filterElem.querySelector('.title-menu');
-  const itemsSelected = filterElem.querySelectorAll('.item-selected');
-  titleMenu.addEventListener('click', () => {
-    // add activ class on click
-    if (!filterElem.classList.contains('activ')) {
-      filterElem.classList.add('activ');
-      changesAngles(angleDown, angleUp);
-      isVisible(dropdownMenu, true);
-    } else {
-      filterElem.classList.remove('activ');
-      changesAngles(angleDown, angleUp);
-      isVisible(dropdownMenu, false);
-    }
-  });
-  diplayCrossIcon(itemsSelected);
-}); */
