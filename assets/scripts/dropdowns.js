@@ -286,6 +286,29 @@ const createItem = async (elements, ul, item) => {
     ul.appendChild(newItem);
   });
 };
+const addTag = (value) => {
+  const containerChoices = document.querySelector('.filter-choices');
+  const li = document.createElement('li');
+  const span = document.createElement('span');
+  li.textContent = value;
+  containerChoices.appendChild(li);
+  li.setAttribute(
+    'class',
+    'px-5 py-4 bg-primary rounded-lg flex items-center justify-between gap-12'
+  );
+  li.appendChild(span);
+  span.setAttribute('class', 'cursor-pointer h-full');
+  span.innerHTML = `<svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 11.5L7 6.5M7 6.5L2 1.5M7 6.5L12 1.5M7 6.5L2 11.5" stroke="#1B1B1B" stroke-width="2.16667" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      `;
+  span.addEventListener('click', removeTag);
+};
+
+const removeTag = (event) => {
+  const li = event.currentTarget.parentElement;
+  li.remove();
+};
 
 /* const filterGroupElems = document.querySelectorAll('.filter-group');
 filterGroupElems.forEach((filterElem) => {
