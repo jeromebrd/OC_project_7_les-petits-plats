@@ -95,6 +95,10 @@ const getRecipes = () => {
     container.appendChild(ul);
     return container;
   };
+  const getTotalRecipes = async (nb) => {
+    const nbElem = document.querySelector('.number-recipes');
+    nbElem.textContent = `${nb} recettes`;
+  };
   return {
     getCard,
     getImgRecipe,
@@ -102,6 +106,7 @@ const getRecipes = () => {
     getTextContainer,
     getTextRecipe,
     getTextIngredients,
+    getTotalRecipes,
   };
 };
 //  ==========================================================
@@ -124,6 +129,7 @@ export const displayCard = async () => {
     textContainer.append(textRecipe);
     textContainer.append(textIngredients);
   });
+  template.getTotalRecipes(data.length);
 };
 
 export const displayCardFind = (recipes) => {
@@ -142,8 +148,13 @@ export const displayCardFind = (recipes) => {
     textContainer.append(textRecipe);
     textContainer.append(textIngredients);
   });
+  if (recipes == 0) {
+    containerCards.textContent = 'Aucune recette trouvée';
+  }
 };
 
-export const updateRecipes = () => {
+export const updateRecipes = (nb, datas) => {
+  const nbElement = document.querySelector('.number-recipes');
   containerCards.innerHTML = '';
+  nbElement.textContent = `${nb} recette${nb > 1 ? 's' : ''}`;
 };

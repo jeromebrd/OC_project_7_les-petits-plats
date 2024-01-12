@@ -13,11 +13,14 @@ btnCancelHero.addEventListener('click', () => {
 });
 
 // To find the recipes in the db with a functional algorithm
-const findRecipes = (search, recipes) => {
-  const userSearch = search[0];
+export const findRecipes = (search, recipes, searchType = 'words') => {
+  let userSearch;
+  if (searchType === 'tag') {
+    userSearch = search;
+  } else {
+    userSearch = search[0];
+  }
   const recipeFind = [];
-  const searchWords = userSearch.toLowerCase().split(' ');
-  console.log(searchWords);
 
   // save recipe name, desc, and each ingredients to lower case
   recipes.forEach((recipe) => {
@@ -26,16 +29,33 @@ const findRecipes = (search, recipes) => {
     const recipeIngredientLowercase = recipe.ingredients.map((ingredient) => {
       return ingredient.ingredient.toLowerCase();
     });
-
-    // conditions to find recipes with name, description or ingredients
-    if (recipeNameLowercase === userSearch) {
-      recipeFind.push(recipe);
-    } else if (
-      recipeNameLowercase.includes(userSearch) ||
-      recipeDescLowercase.includes(userSearch) ||
-      recipeIngredientLowercase.includes(userSearch)
-    ) {
-      recipeFind.push(recipe);
+    const recipeUstensilsLowercase = recipe.ustensils.map((ustensil) => {
+      return ustensil.toLowerCase();
+    });
+    const recipeApplianceLowercase = recipe.appliance.toLowerCase();
+    if (searchType === 'tag') {
+      // Check if any tag matches the user search
+      if (
+        search.every(
+          (tag) =>
+            recipeIngredientLowercase.includes(tag) ||
+            recipeUstensilsLowercase.includes(tag) ||
+            recipeApplianceLowercase.includes(tag)
+        )
+      ) {
+        recipeFind.push(recipe);
+      }
+    } else {
+      // Default to 'words' search type
+      // conditions to find recipes with name, description, or ingredients
+      if (
+        recipeNameLowercase === userSearch ||
+        recipeNameLowercase.includes(userSearch) ||
+        recipeDescLowercase.includes(userSearch) ||
+        recipeIngredientLowercase.includes(userSearch)
+      ) {
+        recipeFind.push(recipe);
+      }
     }
   });
   return recipeFind;
@@ -66,7 +86,7 @@ export const getSearchRecipe = async () => {
     console.log(dataSubmit);
 
     const results = findRecipes(dataSubmit, datas);
-    updateRecipes();
+    updateRecipes(results.length);
     displayCardFind(results);
   });
 };

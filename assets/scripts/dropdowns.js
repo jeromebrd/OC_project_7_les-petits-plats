@@ -6,6 +6,8 @@ import {
 } from './animations';
 import { fetchData } from './fetchData';
 fetchData;
+import { findRecipes } from './algoSearch';
+import { displayCardFind, updateRecipes } from './templateRecipe';
 
 export const dropdownMenu = () => {
   const listGroup = document.querySelectorAll('.list-group');
@@ -240,6 +242,7 @@ const clickToOpenDropdown = (input, element, angleDown, angleUp, dropdown) => {
     }
   });
 };
+const arrFilter = [];
 
 const createItem = async (elements, ul, item) => {
   const data = await fetchData();
@@ -284,14 +287,35 @@ const createItem = async (elements, ul, item) => {
     const newItem = item.cloneNode(true);
     newItem.textContent = uniqueItem;
     ul.appendChild(newItem);
+    // select recipe with filter when click on
+    newItem.addEventListener('click', (event) => {
+      const value = event.target.innerHTML;
+      // const filter = value.toLowerCase();
+      const filter = value.toLowerCase();
+      arrFilter.push(filter);
+      console.log(arrFilter);
+
+      const results = findRecipes(arrFilter, data, 'tag');
+      updateDisplay();
+      addTag(value);
+    });
   });
 };
+// update cards in html and nb recipes
+const updateDisplay = async () => {
+  const data = await fetchData();
+  const results = findRecipes(arrFilter, data, 'tag');
+  updateRecipes(results.length);
+  displayCardFind(results);
+};
+
+// add tag in html
 const addTag = (value) => {
-  const containerChoices = document.querySelector('.filter-choices');
+  const containerTags = document.querySelector('.filter-choices');
   const li = document.createElement('li');
   const span = document.createElement('span');
   li.textContent = value;
-  containerChoices.appendChild(li);
+  containerTags.appendChild(li);
   li.setAttribute(
     'class',
     'px-5 py-4 bg-primary rounded-lg flex items-center justify-between gap-12'
@@ -305,29 +329,17 @@ const addTag = (value) => {
   span.addEventListener('click', removeTag);
 };
 
+// remove tag in html and arrFilter
 const removeTag = (event) => {
   const li = event.currentTarget.parentElement;
+  const tagToRemove = li.textContent.trim().toLowerCase();
+
+  // delete tag in the arrFilter
+  const indexToRemove = arrFilter.indexOf(tagToRemove);
+  if (indexToRemove !== -1) {
+    arrFilter.splice(indexToRemove, 1);
+  }
+  updateDisplay();
+  // delete element in HTML
   li.remove();
 };
-
-/* const filterGroupElems = document.querySelectorAll('.filter-group');
-filterGroupElems.forEach((filterElem) => {
-  const angleDown = filterElem.querySelector('.angle-down');
-  const angleUp = filterElem.querySelector('.angle-up');
-  const dropdownMenu = filterElem.querySelector('.dropdown-menu');
-  const titleMenu = filterElem.querySelector('.title-menu');
-  const itemsSelected = filterElem.querySelectorAll('.item-selected');
-  titleMenu.addEventListener('click', () => {
-    // add activ class on click
-    if (!filterElem.classList.contains('activ')) {
-      filterElem.classList.add('activ');
-      changesAngles(angleDown, angleUp);
-      isVisible(dropdownMenu, true);
-    } else {
-      filterElem.classList.remove('activ');
-      changesAngles(angleDown, angleUp);
-      isVisible(dropdownMenu, false);
-    }
-  });
-  diplayCrossIcon(itemsSelected);
-}); */
