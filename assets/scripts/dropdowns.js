@@ -147,7 +147,7 @@ export const dropdownMenu = () => {
     );
     return ul;
   };
-  const getItemSelected = (item) => {
+  const getTagSelected = (item) => {
     const li = document.createElement(li);
     li.innerHTML = `<li
     class="item-selected w-full bg-primary py-2 px-5 hover:font-bold transition-all duration-100 ease-out flex justify-between items-center"
@@ -178,7 +178,7 @@ export const dropdownMenu = () => {
     getDropdown,
     getSearchBar,
     getListItemsSelected,
-    getItemSelected,
+    getTagSelected,
     getAllItems,
     getEachItem,
   };
@@ -290,12 +290,9 @@ const createItem = async (elements, ul, item) => {
     // select recipe with filter when click on
     newItem.addEventListener('click', (event) => {
       const value = event.target.innerHTML;
-      // const filter = value.toLowerCase();
       const filter = value.toLowerCase();
       arrFilter.push(filter);
       console.log(arrFilter);
-
-      const results = findRecipes(arrFilter, data, 'tag');
       updateDisplay();
       addTag(value);
     });
