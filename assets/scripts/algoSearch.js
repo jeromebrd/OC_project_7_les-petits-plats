@@ -1,6 +1,7 @@
 import { fetchData } from './fetchData';
 import { displayCard, displayCardFind, updateRecipes } from './templateRecipe';
 import { changeOpacity } from './animations';
+import { updateItemsDropdown } from './dropdowns';
 
 const inputSearchHero = document.querySelector('.search-hero');
 const formElem = document.querySelector('form');
@@ -83,10 +84,10 @@ export const getSearchRecipe = async () => {
     event.preventDefault();
     dataSubmit = [];
     dataSubmit.push(searchValue.toLowerCase());
-    console.log(dataSubmit);
 
     const results = findRecipes(dataSubmit, datas);
     updateRecipes(results.length);
+    updateItemsDropdown(results);
     displayCardFind(results);
   });
 };

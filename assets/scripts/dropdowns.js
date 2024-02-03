@@ -10,7 +10,6 @@ import { findRecipes } from './algoSearch';
 import { displayCardFind, updateRecipes } from './templateRecipe';
 
 export const dropdownMenu = () => {
-  const listGroup = document.querySelectorAll('.list-group');
   const getContainerInput = () => {
     const div = document.createElement('div');
     div.setAttribute('class', 'flex flex-col w-full');
@@ -170,6 +169,7 @@ export const dropdownMenu = () => {
     li.setAttribute('class', 'pb-1');
     return li;
   };
+
   return {
     getContainerInput,
     getTitle,
@@ -228,6 +228,12 @@ export const displayInput = () => {
     );
   }
 };
+// ============================================================
+
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 const clickToOpenDropdown = (input, element, angleDown, angleUp, dropdown) => {
   input.addEventListener('click', () => {
     // add activ class on click
@@ -246,11 +252,7 @@ const arrFilter = [];
 
 const createItem = async (elements, ul, item) => {
   const data = await fetchData();
-  const uniqueItems = new Set(); // Utiliser un ensemble pour stocker les éléments uniques
-
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+  const uniqueItems = new Set();
 
   if (elements === 'ingredients') {
     data.forEach((d) =>
@@ -282,7 +284,7 @@ const createItem = async (elements, ul, item) => {
     });
   }
 
-  // Ajouter les éléments uniques à la liste
+  // Add unique elements to the list.
   uniqueItems.forEach((uniqueItem) => {
     const newItem = item.cloneNode(true);
     newItem.textContent = uniqueItem;
@@ -291,19 +293,75 @@ const createItem = async (elements, ul, item) => {
     newItem.addEventListener('click', (event) => {
       const value = event.target.innerHTML;
       const filter = value.toLowerCase();
-      arrFilter.push(filter);
-      console.log(arrFilter);
-      updateDisplay();
-      addTag(value);
+      // Avoid adding a tag multiple times.
+      if (!arrFilter.includes(filter)) {
+        arrFilter.push(filter);
+        updateDisplay();
+        addTag(value);
+      }
     });
   });
 };
+
 // update cards in html and nb recipes
-const updateDisplay = async () => {
+export const updateDisplay = async () => {
   const data = await fetchData();
   const results = findRecipes(arrFilter, data, 'tag');
   updateRecipes(results.length);
   displayCardFind(results);
+  updateItemsDropdown(results);
+};
+// ========= update items inside dropdownMenu ============
+
+export const updateItemsDropdown = (arr) => {
+  const filterGroup = document.querySelectorAll('.filter-group');
+  // Sets for storing unique elements
+  const ingredientsSet = new Set();
+  const appliancesSet = new Set();
+  const ustensilsSet = new Set();
+  // List of ingredients, appliances, and utensils found on the recipes.
+  arr.forEach((recipe) => {
+    const ingredientsList = recipe.ingredients;
+    ingredientsList.forEach((ing) => {
+      ingredientsSet.add(ing.ingredient.toLowerCase());
+    });
+    const appliances = recipe.appliance;
+    appliancesSet.add(appliances.toLowerCase());
+    const ustensilsList = recipe.ustensils;
+    ustensilsList.forEach((ust) => ustensilsSet.add(ust.toLowerCase()));
+  });
+
+  filterGroup.forEach((group) => {
+    const list = group.querySelector('.list-group');
+    list.innerHTML = '';
+    // Depending on the type of list (ingredients, appliances, utensils), use the appropriate set.
+    let uniqueItemsSet;
+    if (group.id === 'ingredients') {
+      uniqueItemsSet = ingredientsSet;
+    } else if (group.id === 'appliance') {
+      uniqueItemsSet = appliancesSet;
+    } else if (group.id === 'ustensils') {
+      uniqueItemsSet = ustensilsSet;
+    }
+    // Add unique elements to the list.
+    uniqueItemsSet.forEach((uniqueItem) => {
+      const newItem = document.createElement('li');
+      newItem.classList = 'pb-1';
+      newItem.textContent = capitalizeFirstLetter(uniqueItem);
+      list.appendChild(newItem);
+
+      // Add the click event to each item in the list.
+      newItem.addEventListener('click', () => {
+        // Avoid adding a tag multiple times.
+        if (!arrFilter.includes(uniqueItem.toLowerCase())) {
+          arrFilter.push(uniqueItem.toLowerCase());
+          updateItemsDropdown(arr);
+          updateDisplay();
+          addTag(uniqueItem);
+        }
+      });
+    });
+  });
 };
 
 // add tag in html
@@ -311,7 +369,7 @@ const addTag = (value) => {
   const containerTags = document.querySelector('.filter-choices');
   const li = document.createElement('li');
   const span = document.createElement('span');
-  li.textContent = value;
+  li.textContent = capitalizeFirstLetter(value);
   containerTags.appendChild(li);
   li.setAttribute(
     'class',
